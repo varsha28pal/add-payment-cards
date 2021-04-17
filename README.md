@@ -1,27 +1,33 @@
-# FlexmoneyAssignment
+# Add Payment Cards
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
+This application displays a user form to accept credit / debit card with required validation and makes a call to dummy API to post the card details.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Download the zip from git repo. Run `npm install` to install the dependencies. Now run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
-## Code scaffolding
+## Framworks
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This application is generated on Angular 8 framework. This choice was made because Angular provides wide range of libraries and there are many advantage to it as compared to AngularJs.
 
-## Build
+## Libraries
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Used Bootstrap 4 for styling.
+Used angular-cc-library to validate credit / debit cards details.
 
-## Running unit tests
+## Code sturcture
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This applicaton has two components -
+AppComponent - which is the main component and entry component for the application. AppComponent also calls the AddCardsComponent. This component is present under src -> app folder.
+AddCardsComponent - this component display a reactive form that allows users to enter card details. This component has the logic to validate card details form. It also uses a AddCardService service to send card details to server. This component is present under src -> app -> add-cards folder.
 
-## Running end-to-end tests
+add-cards folder also has an interface file (add-cards.interface.ts) which exports the required interface used by AddCardsComponent.
+add-cards folder also has an service file (add-cards.service.ts) which make a http call to dummy API. This serve is used by AddCardsComponent and therefore is placed under add-cards folder.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+A constant file (app-component-constant.ts) is placed under app folder as it stores the headers and url of a http call. Its good idea to store all the Url in one place so that they can used anywhere in application and there will be no ambiguity.
 
-## Further help
+## Area of improvement
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Login / Signup functionality can be added to this application. A user may want to keep a track of which card he/she has added in the application.
+The application must show card added by the user and we must support all CRUD operation.
