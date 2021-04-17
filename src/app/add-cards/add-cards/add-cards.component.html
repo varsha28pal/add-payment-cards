@@ -1,0 +1,78 @@
+<div class="add-card">
+    <div class="row">
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="col-sm-8 col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <span>CREDIT/DEBIT CARD DETAILS</span>
+                            </div>
+                            <div class="col-lg-6 text-right d-none d-lg-block">
+                                <img class="img-responsive" src="../../../assets/master-card.png" />
+                                <img class="img-responsive" src="../../../assets/rupay.png" />
+                                <img class="img-responsive img-card" src="../../../assets/visa.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="addCardGroup" (ngSubmit)="onAddCardDetails()">
+                            <div class="form-group">
+                                <label for="cc-name" class="control-label">Name on card</label>
+                                <input id="cc-name" class="form-control" type="text" autocomplete="cc-name"
+                                    [formControl]="getCardNameControl()" required />
+                                <div *ngIf="getCardNameControl().invalid && (getCardNameControl().dirty || getCardNameControl().touched)"
+                                    class="error-msg">
+                                    <div>{{getCardNameErrorMsg()}}</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cc-number" class="control-label">Card number</label>
+                                <input id="cc-number" class="form-control" type="tel" autocomplete="cc-number"
+                                    [formControl]="getCardNumberControl()" required ccNumber />
+                                <div *ngIf="getCardNumberControl().invalid && (getCardNumberControl().dirty || getCardNumberControl().touched)"
+                                    class="error-msg">
+                                    <div>{{getCardNumberErrorMsg()}}</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cc-exp" class="control-label">Expiry date</label>
+                                        <input id="cc-exp" class="form-control" type="tel" placeholder="MM/YY"
+                                            autocomplete="cc-exp" [formControl]="getCardExpiryControl()" required
+                                            ccExp />
+                                        <div *ngIf="getCardExpiryControl().invalid && (getCardExpiryControl().dirty || getCardExpiryControl().touched)"
+                                            class="error-msg">
+                                            <div>{{getCardExpiryErrorMsg()}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cc-cvc" class="control-label">Security code</label>
+                                        <input id="cc-cvc" class="form-control" type="tel" placeholder="cvc"
+                                            autocomplete="off" [formControl]="getCardCvcControl()" required ccCvc />
+                                        <div *ngIf="getCardCvcControl().invalid && (getCardCvcControl().dirty || getCardCvcControl().touched)"
+                                            class="error-msg">
+                                            <div>{{getCardCvcErrorMsg()}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block mt-4"
+                                [disabled]="!addCardGroup.valid">ADD
+                                CARD</button>
+
+                            <div *ngIf="isFormSubmitted">
+                                <div *ngIf="addCardDetailsResponse" class="d-flex justify-content-center mt-4 text-success">Card added successfully.</div>
+                                <div *ngIf="addCardDetailsResponse===false" class="d-flex justify-content-center mt-4 text-danger">Error submitting card details.</div>
+                                <button type="button" class="btn btn-secondary btn-block mt-4" (click)="onFormReset()">RESET</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
