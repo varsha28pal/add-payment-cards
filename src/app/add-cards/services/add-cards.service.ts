@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { ADD_CARD_URL, HEADER } from "../../../app-component.constant";
+import { ADD_CARD_URL, HEADER } from "../../app-component.constant";
 import { IAddCardResponse } from "../interfaces/add-cards.interface";
 
 @Injectable({
